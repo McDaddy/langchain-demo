@@ -5,8 +5,11 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.llms.tongyi import Tongyi
 from langserve import add_routes
+from dotenv import load_dotenv
 
-os.environ["DASHSCOPE_API_KEY"] = 'sk-9c26695499d04fceab66b900ae83caed'
+load_dotenv()
+
+os.environ["DASHSCOPE_API_KEY"] = os.getenv('DASHSCOPE_API_KEY')
 
 # 调用大语言模型
 # 创建模型

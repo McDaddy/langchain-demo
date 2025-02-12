@@ -23,7 +23,7 @@ model = Tongyi()
 
 # 1、加载数据: 一篇博客内容数据
 loader = WebBaseLoader(
-    web_paths=['https://www.kuimo.top/blog/2023/front-end'],
+    web_paths=['https://www.kuimo.top/blog/2023/front-end', 'https://www.kuimo.top/blog/2023/cookie'],
     bs_kwargs=dict(
         parse_only=bs4.SoupStrainer(class_=('prose max-w-none pb-8 pt-10 dark:prose-invert'))
     )
@@ -129,6 +129,22 @@ print(resp1['answer'])
 # 第二轮对话
 resp2 = result_chain.invoke(
     {'input': '它是什么时候诞生的?'},
+    config={'configurable': {'session_id': 'zs123456'}}
+)
+
+print(resp2['answer'])
+
+# 第3轮对话
+resp2 = result_chain.invoke(
+    {'input': 'Cookie的作用是啥?'},
+    config={'configurable': {'session_id': 'zs123456'}}
+)
+
+print(resp2['answer'])
+
+# 第4轮对话
+resp2 = result_chain.invoke(
+    {'input': 'golang是哪一年诞生的?'},
     config={'configurable': {'session_id': 'zs123456'}}
 )
 
